@@ -20,34 +20,28 @@ const AddExpense = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     const authToken = await getToken();
     if (!authToken) return;
-  
+
     const newExpense = {
       description,
       amount: parseFloat(amount),
       category,
       date,
     };
-  
+
     try {
-      const res = await axios.post("http://localhost:8000/expenses/", newExpense, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
+      const res = await axios.post("https://finsprint-backend.onrender.com/expenses/", newExpense, {
+        headers: { Authorization: `Bearer ${authToken}` },
       });
 
       setExpenses((prev) => [...prev, res.data]);
       alert("Expense added successfully!");
-      
-      // Clear form after successful submission
       setDescription("");
       setAmount("");
       setCategory("Food");
       setDate(new Date().toISOString().slice(0, 10));
       setFile(null);
-      
     } catch (err) {
       console.error(err);
       alert("Failed to add expense.");
@@ -63,7 +57,7 @@ const AddExpense = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://localhost:8000/receiptscanner/scan_receipt/", formData, {
+      const res = await axios.post("https://finsprint-backend.onrender.com/receiptscanner/scan_receipt/", formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
           "Content-Type": "multipart/form-data",
@@ -71,7 +65,6 @@ const AddExpense = () => {
       });
 
       const data = res.data;
-
       if (data.isReceipt) {
         setDescription(data.description || "");
         setAmount(data.amount || "");
@@ -91,52 +84,25 @@ const AddExpense = () => {
 
   return (
     <>
-      <div className="back">
-        <BackButton />
-      </div>
-
+      <div className="back"><BackButton /></div>
       <div className={styles.container}>
         <h1>Add New Expense</h1>
-
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
             Description:
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
-              placeholder="Enter expense description"
-            />
+            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} required />
           </label>
           <label>
             Amount (₹):
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              required
-              placeholder="0.00"
-              step="0.01"
-              min="0"
-            />
+            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required />
           </label>
           <label>
             Date:
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
           </label>
           <label>
             Category:
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
+            <select value={category} onChange={(e) => setCategory(e.target.value)} required>
               <option value="Food">Food</option>
               <option value="Travel">Travel</option>
               <option value="Shopping">Shopping</option>
@@ -152,27 +118,18 @@ const AddExpense = () => {
           </label>
 
           <h1>OR</h1>
-
           <div className={styles.uploadSection}>
             <h2>Upload a Receipt</h2>
-            <input 
-              type="file" 
-              onChange={(e) => setFile(e.target.files[0])} 
-              accept="image/*"
-            />
-            <button
-              type="button"
-              onClick={handleFileUpload}
-              disabled={loading || !file}
-            >
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} accept="image/*" />
+            <button type="button" onClick={handleFileUpload} disabled={loading || !file}>
               {loading ? "Scanning..." : "Upload & Scan"}
             </button>
           </div>
 
-          <button type="submit" disabled={loading}>
-            Add Expense
-          </button>
+          <button type="submit" disabled={loading}>Add Expense</button>
         </form>
+
+        <button onClick={() => navigate("/predict")}>Go to Prediction</button>
       </div>
     </>
   );
