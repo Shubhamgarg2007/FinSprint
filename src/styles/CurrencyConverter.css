@@ -1,0 +1,238 @@
+.converter-container {
+  background-color: #f9faff;
+  min-height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #090b12;
+  box-sizing: border-box;
+}
+
+.converter-box {
+
+  width: 55%;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  border-radius: 12px; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); 
+}
+
+
+.converter-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #090b12;
+  margin: 0;
+}
+
+.subtitle {
+  color: #090b12;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.error-message {
+  background-color: #ffecec;
+  padding: 12px;
+  border-radius: 8px;
+  color: #f66149;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  width: auto;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #090b12;
+}
+
+.input {
+  width: 43vw;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 16px;
+  background-color: #f9faff;
+  color: #090b12;
+}
+
+.currency-select-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.currency-select {
+  flex: 1;
+}
+
+.select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 16px;
+  background-color: #f9faff;
+  color: #090b12;
+}
+
+.swap-button {
+  margin-top: 24px;
+  background-color: #b0acf7;
+  color: #5b4bc4;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.swap-button.hovered {
+  background-color: #5b4bc4;
+}
+
+.swap-button.hovered svg {
+  color: white;
+}
+
+/* Result box */
+.result-box {
+  background-color: #f9faff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  border: 1px solid #b0acf7;
+}
+
+.result-title {
+  font-size: 14px;
+  color: #090b12;
+  margin-bottom: 8px;
+}
+
+.result-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #5b4bc4;
+}
+
+.exchange-rate {
+  font-size: 14px;
+  color: #090b12;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+
+.refresh-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #5b4bc4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.refresh-button.hovered {
+  background-color: #4b3da3;
+}
+
+
+.back {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+
+.back button {
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  margin: 10px;
+}
+
+.back button:hover {
+  background-color: #f29a3c;
+}
+
+
+.converter-container {
+  position: absolute;
+}
+
+.currency-animation-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: 0; /* Behind the converter box */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.currency-animation-track {
+  display: flex;
+  gap: 2rem;
+  animation: scrollCurrency 4s linear infinite;
+  opacity: 0.2;
+}
+
+.currency-animation-track img {
+  width: 40px;
+  height: 40px;
+}
+
+.converter-box {
+  position: relative;
+  z-index: 1; /* Ensures it's above the animation */
+  background-color: #f9faff; 
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes scrollCurrency {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10%);
+  }
+}

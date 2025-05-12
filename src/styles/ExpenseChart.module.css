@@ -1,0 +1,122 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.chartContainer {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filterContainer label {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Styled dropdown */
+.filterContainer select {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid #8a60fd;
+  background-color: #f8f7ff;
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-color:white;
+  background-repeat: no-repeat;
+  background-position: right 12px top 50%;
+  background-size: 12px auto;
+  min-width: 120px;
+  box-shadow: 0 2px 6px rgba(138, 96, 253, 0.1);
+}
+
+
+
+.filterContainer select:hover,
+.filterContainer select:focus {
+  border-color: #6943e8;
+  box-shadow: 0 3px 8px rgba(138, 96, 253, 0.2);
+  outline: none;
+}
+
+/* Styled download button */
+.downloadBtn {
+  padding: 18px 18px;
+  background-image: linear-gradient(135deg, #9370DB, #6A5ACD);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(106, 90, 205, 0.3);
+}
+
+.downloadBtn:hover {
+  background-image: linear-gradient(135deg, #8A2BE2, #7B68EE);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(106, 90, 205, 0.4);
+}
+
+.downloadBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(106, 90, 205, 0.3);
+}
+
+.totalSpending {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  padding: 10px 16px;
+  background-color: #f8f7ff;
+  border-radius: 8px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .buttonContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}

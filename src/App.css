@@ -1,0 +1,311 @@
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; */
+/* Dashboard container */
+.dashboard {
+  padding: 100px;
+  background-color: #f9faff; /* Light background color */
+}
+
+.dashboard .landing{
+  display: flex;
+  justify-content: center;
+}
+
+/* Unified header with back and login/logout aligned */
+.dashboard .header {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  padding: 10px 30px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+}
+
+/* Style for back button (same as login/logout) */
+.dashboard .login-signup button {
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #000000; /* Black */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover for both buttons */
+.dashboard .login-signup button:hover {
+  background-color: #f29a3c; /* Orange on hover */
+}
+
+/* Login/Sign Up buttons */
+.dashboard .login-signup button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #000000; /* Red color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.dashboard .login-signup button:hover {
+  background-color: #f29a3c; /* Orange color for hover */
+}
+
+#water-text {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#water-text h1 {
+  position: absolute;
+  font-size: 4vw;
+  width: 80%;
+  color: transparent;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px #5b4bc4;
+}
+
+#water-text h1:nth-child(2) {
+  color: #5b4bc4;
+}
+
+/* Options container (grid layout) */
+.options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns layout by default */
+  gap: 20px;
+  padding: 20px;
+  grid-template-rows: auto auto;
+  width: 100%;
+  justify-items: center; /* Center items within the grid */
+  margin-top: 30px;
+}
+
+/* Individual option styling */
+.option {
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px; /* Fixed width for square-like appearance */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for options */
+.option:hover {
+  transform: translateY(-5px); /* Slightly lift up on hover */
+}
+
+/* Option title styling */
+.option h2 {
+  margin-bottom: 10px;
+  color: #090b12; /* Dark color for titles */
+  font-size: 1.5rem;
+}
+
+/* Option button styling */
+.option button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #5b4bc4; /* Purple button */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%; /* Ensure button fills the square */
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.option button:hover {
+  background-color: #ffc359; /* Yellow color for hover */
+}
+
+/* Message for logged out users */
+.dashboard h2 {
+  font-size: 1.2rem;
+  color: #5b4bc4; /* Purple color */
+}
+
+.dashboard h3 {
+  font-size: 2.2rem;
+  color: #5b4bc4; /* Purple color */
+}
+
+.animated-heading {
+  animation: fadeSlideIn 1.8s ease-out forwards;
+  opacity: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+  display: inline-block;
+  cursor: default;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animated-heading::after,
+.animated-heading::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #16013a, #9775da);
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 0.4s ease-out;
+}
+
+.animated-heading::after {
+  bottom: -5px;
+  transform-origin: right;
+}
+
+.animated-heading::before {
+  top: -5px;
+  transform-origin: left;
+}
+
+.animated-heading:hover::after,
+.animated-heading:hover::before {
+  transform: scaleX(1);
+}
+
+/* =============== RESPONSIVE STYLING =============== */
+
+/* Large screens (laptops and smaller desktops) */
+@media screen and (max-width: 1200px) {
+  .options {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+  }
+  
+  .dashboard {
+    padding: 80px 60px;
+  }
+  
+  #water-text h1 {
+    font-size: 5vw;
+  }
+}
+
+/* Medium screens (tablets and large phones) */
+@media screen and (max-width: 992px) {
+  .options {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    gap: 15px;
+  }
+  
+  .dashboard {
+    padding: 60px 40px;
+  }
+  
+  .option {
+    width: 100%; /* Full width of grid cell */
+    max-width: 300px;
+  }
+  
+  #water-text h1 {
+    font-size: 6vw;
+    -webkit-text-stroke: 1.5px #5b4bc4;
+  }
+  
+  .animated-heading {
+    font-size: 2rem;
+  }
+  
+  .dashboard h3 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Small screens (phones) */
+@media screen and (max-width: 768px) {
+  .options {
+    grid-template-columns: 1fr; /* Single column for small screens */
+  }
+  
+  .dashboard {
+    padding: 40px 20px;
+  }
+  
+  .dashboard .header {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .dashboard .login-signup {
+    margin-top: 10px;
+  }
+  
+  #water-text h1 {
+    font-size: 8vw;
+    -webkit-text-stroke: 1px #5b4bc4;
+    width: 100%;
+  }
+  
+  .animated-heading {
+    font-size: 1.8rem;
+  }
+  
+  .option h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+  .dashboard {
+    padding: 30px 15px;
+  }
+  
+  .option {
+    padding: 15px;
+  }
+  
+  .dashboard .header {
+    padding: 10px 15px;
+  }
+  
+  .dashboard .login-signup button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  #water-text h1 {
+    font-size: 10vw;
+    margin-bottom: 10px;
+  }
+  
+  .animated-heading {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard h3 {
+    font-size: 1.5rem;
+  }
+  
+  .dashboard h2 {
+    font-size: 1rem;
+  }
+}

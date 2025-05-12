@@ -1,0 +1,186 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Improved Table Styling */
+.expenseTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.expenseTable th,
+.expenseTable td {
+  padding: 14px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+/* Enhanced Table Header */
+.expenseTable th {
+  background: linear-gradient(to right, #6a11cb 0%, #b695f7 100%);
+  color: white;
+  font-weight: 600;
+  border-bottom: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.expenseTable tr:hover {
+  background-color: #f8f9ff;
+}
+
+/* Radio button styling */
+.expenseTable input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #6a11cb;
+}
+
+/* Input field styling */
+/* Base styles for all inputs */
+.expenseTable input[type="text"],
+.expenseTable input[type="number"],
+.expenseTable input[type="date"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Specific width adjustments for number and date inputs */
+.expenseTable input[type="number"] {
+  width: 80px;
+}
+
+.expenseTable input[type="date"] {
+  width: 130px;
+}
+
+.expenseTable input[type="text"]:focus,
+.expenseTable input[type="number"]:focus,
+.expenseTable input[type="date"]:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+  outline: none;
+}
+
+/* Column widths */
+.expenseTable th:nth-child(1),
+.expenseTable td:nth-child(1) {
+  width: 60px;
+  text-align: center;
+}
+
+.expenseTable th:nth-child(2),
+.expenseTable td:nth-child(2) {
+  width: 130px;
+}
+
+.expenseTable th:nth-child(3),
+.expenseTable td:nth-child(3) {
+  width: 90px; /* Smaller width for amount */
+}
+
+.expenseTable th:nth-child(4),
+.expenseTable td:nth-child(4) {
+  width: 110px; /* Smaller width for date */
+}
+
+.expenseTable th:nth-child(5),
+.expenseTable td:nth-child(5) {
+  width: auto; /* Description will take up remaining space */
+  min-width: 200px; /* Ensure description has enough space */
+}
+
+.expenseTable th:nth-child(6),
+.expenseTable td:nth-child(6) {
+  width: 80px;
+  text-align: center;
+}
+
+/* Purple Gradient Save Button */
+.expenseTable button {
+  background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(74, 0, 224, 0.2);
+  width: 80px;
+}
+
+.expenseTable button:hover {
+  background: linear-gradient(135deg, #9b4dff 0%, #651fff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 0, 224, 0.25);
+}
+
+.expenseTable button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 3px rgba(74, 0, 224, 0.25);
+}
+
+/* Loading state */
+.container p:first-of-type {
+  text-align: center;
+  padding: 30px 0;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .expenseTable {
+    font-size: 14px;
+  }
+  
+  .expenseTable th,
+  .expenseTable td {
+    padding: 10px 8px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .expenseTable input[type="text"],
+  .expenseTable input[type="number"],
+  .expenseTable input[type="date"] {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+}

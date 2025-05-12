@@ -1,0 +1,400 @@
+/* Basic reset for font and box model */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; /* Matches font-sans in Tailwind */
+}
+
+/* Equivalent of w-full min-h-screen bg-[#f9faff] text-[#090b12] p-4 flex flex-col font-sans */
+.dashboard-container {
+    width: 97%;
+    min-height: 95vh;
+    background-color: #f9faff;
+    color: #090b12;
+    padding: 1rem; /* p-4 is typically 1rem in default Tailwind config */
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+/* Equivalent of flex flex-wrap justify-between items-start sm:items-center mb-6 gap-4 */
+.header-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; /* items-start */
+    margin-bottom: 1.5rem; /* mb-6 is typically 1.5rem */
+    gap: 1rem; /* gap-4 is typically 1rem */
+}
+
+/* Equivalent of sm:items-center within .header-container */
+@media (min-width: 640px) { /* Corresponds to Tailwind's 'sm' breakpoint */
+    .header-container {
+        align-items: center;
+    }
+}
+
+/* Equivalent of text-xl md:text-2xl font-semibold text-[#090b12] */
+.header-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    color: #090b12;
+}
+
+/* Equivalent of md:text-2xl */
+@media (min-width: 768px) { /* Corresponds to Tailwind's 'md' breakpoint */
+    .header-title {
+        font-size: 1.5rem; /* text-2xl */
+    }
+}
+
+/* Equivalent of flex items-center w-full sm:w-auto */
+.header-controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Equivalent of sm:w-auto */
+@media (min-width: 640px) { /* Corresponds to Tailwind's 'sm' breakpoint */
+    .header-controls {
+        width: auto;
+    }
+}
+
+
+/* Equivalent of relative mr-2 flex-grow sm:flex-grow-0 */
+.search-area {
+    position: relative;
+    margin-right: 0.5rem; /* mr-2 is typically 0.5rem */
+    flex-grow: 1; /* flex-grow */
+}
+
+/* Equivalent of sm:flex-grow-0 */
+@media (min-width: 640px) { /* Corresponds to Tailwind's 'sm' breakpoint */
+    .search-area {
+        flex-grow: 0;
+    }
+}
+
+/* Equivalent of w-full sm:w-64 bg-white rounded px-3 py-1.5 pr-8 text-sm border border-[#e0e7ff] focus:border-[#5b4bc4] focus:ring-1 focus:ring-[#5b4bc4] outline-none placeholder-gray-500 */
+.search-input {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 0.25rem; /* rounded */
+    padding: 0.375rem 0.75rem; /* py-1.5 is typically 0.375rem, px-3 is 0.75rem */
+    padding-right: 2rem; /* pr-8 is typically 2rem (32px) */
+    font-size: 0.875rem; /* text-sm */
+    border: 1px solid #e0e7ff;
+    outline: none; /* outline-none */
+}
+
+/* Equivalent of sm:w-64 */
+@media (min-width: 640px) { /* Corresponds to Tailwind's 'sm' breakpoint */
+    .search-input {
+        width: 16rem; /* w-64 is 16rem */
+    }
+}
+
+/* Equivalent of focus:border-[#5b4bc4] */
+.search-input:focus {
+    border-color: #5b4bc4;
+    box-shadow: 0 0 0 1px #5b4bc4; /* focus:ring-1 focus:ring-[#5b4bc4] */
+}
+
+/* Placeholder styling */
+.search-input::placeholder {
+    color: #6b7280; /* placeholder-gray-500 is typically #6b7280 */
+}
+
+
+/* Equivalent of absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-[#5b4bc4] cursor-pointer hover:text-[#4a3db3] */
+.search-icon {
+    position: absolute;
+    right: 0.5rem; /* right-2 */
+    top: 50%; /* top-1/2 */
+    transform: translateY(-50%); /* transform -translate-y-1/2 */
+    height: 1rem; /* h-4 */
+    width: 1rem; /* w-4 */
+    color: #5b4bc4;
+    cursor: pointer;
+}
+
+/* Equivalent of hover:text-[#4a3db3] */
+.search-icon:hover {
+    color: #4a3db3;
+}
+
+/* Equivalent of absolute z-10 w-full mt-1 bg-white border border-[#e0e7ff] rounded-md shadow-lg max-h-60 overflow-y-auto */
+.search-results-dropdown {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    margin-top: 0.25rem; /* mt-1 is typically 0.25rem */
+    background-color: #ffffff;
+    border: 1px solid #e0e7ff;
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg - approximate, depends on Tailwind config */
+    max-height: 15rem; /* max-h-60 is 15rem (240px) */
+    overflow-y: auto;
+}
+
+/* Equivalent of px-3 py-2 text-sm text-[#090b12] hover:bg-[#f0f0ff] cursor-pointer */
+.search-result-item {
+    padding: 0.5rem 0.75rem; /* py-2 is 0.5rem, px-3 is 0.75rem */
+    font-size: 0.875rem; /* text-sm */
+    color: #090b12;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out; /* Added transition for hover */
+}
+
+/* Equivalent of hover:bg-[#f0f0ff] */
+.search-result-item:hover {
+    background-color: #f0f0ff;
+}
+
+/* Equivalent of font-semibold */
+.search-result-item span {
+    font-weight: 600;
+}
+
+/* Equivalent of mb-4 p-3 bg-[#f66149]/10 text-[#f66149] border border-[#f66149]/30 rounded-md text-sm */
+.error-message {
+    margin-bottom: 1rem; /* mb-4 */
+    padding: 0.75rem; /* p-3 */
+    background-color: rgba(246, 97, 73, 0.1); /* bg-[#f66149]/10 */
+    color: #f66149;
+    border: 1px solid rgba(246, 97, 73, 0.3); /* border-[#f66149]/30 */
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+}
+
+/* Equivalent of flex-grow grid grid-cols-1 lg:grid-cols-4 gap-6 */
+.main-content-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr; /* grid-cols-1 */
+    gap: 1.5rem; /* gap-6 */
+}
+
+/* Equivalent of lg:grid-cols-4 */
+@media (min-width: 1024px) { /* Corresponds to Tailwind's 'lg' breakpoint */
+    .main-content-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)); /* grid-cols-4 */
+    }
+}
+
+
+/* Equivalent of lg:col-span-3 bg-white rounded-lg p-4 flex flex-col shadow-sm border border-[#e0e7ff] */
+.chart-panel {
+    background-color: #ffffff;
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1rem; /* p-4 */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm - approximate */
+    border: 1px solid #e0e7ff;
+}
+
+/* Equivalent of lg:col-span-3 */
+@media (min-width: 1024px) { /* Corresponds to Tailwind's 'lg' breakpoint */
+    .chart-panel {
+        grid-column: span 3 / span 3;
+    }
+}
+
+/* Equivalent of flex-grow h-64 md:h-96 */
+.chart-container {
+    flex-grow: 1;
+    height: 16rem; /* h-64 is 16rem */
+}
+
+/* Equivalent of md:h-96 */
+@media (min-width: 768px) { /* Corresponds to Tailwind's 'md' breakpoint */
+    .chart-container {
+        height: 24rem; /* h-96 is 24rem */
+    }
+}
+
+
+/* Equivalent of flex justify-center items-center h-full text-[#5b4bc4] */
+.loading-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #5b4bc4;
+}
+
+/* Styling for chart axis ticks */
+.recharts-wrapper .recharts-cartesian-axis-tick text {
+    font-size: 11px; /* Equivalent of text-xs adjusted */
+    fill: #4b5563; /* Slightly muted dark text */
+}
+
+
+/* Equivalent of flex justify-center sm:justify-end mt-4 space-x-2 */
+.timeframe-selector {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem; /* mt-4 */
+    column-gap: 0.5rem; /* space-x-2 */
+}
+
+/* Equivalent of sm:justify-end */
+@media (min-width: 640px) { /* Corresponds to Tailwind's 'sm' breakpoint */
+    .timeframe-selector {
+        justify-content: flex-end;
+    }
+}
+
+/* Equivalent of px-3 py-1 rounded text-xs transition-colors duration-150 */
+.timeframe-button {
+    padding: 0.25rem 0.75rem; /* py-1 is 0.25rem, px-3 is 0.75rem */
+    border-radius: 0.25rem; /* rounded */
+    font-size: 0.75rem; /* text-xs */
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out; /* transition-colors duration-150 */
+    border: none; /* Buttons often have default borders */
+    cursor: pointer;
+}
+
+/* Equivalent of active: bg-[#5b4bc4] text-white */
+.timeframe-button.active {
+    background-color: #5b4bc4;
+    color: #ffffff;
+}
+
+/* Equivalent of inactive: bg-[#f9faff] text-[#5b4bc4] hover:bg-[#e0e7ff] */
+.timeframe-button:not(.active) {
+    background-color: #f9faff;
+    color: #5b4bc4;
+}
+
+/* Equivalent of hover:bg-[#e0e7ff] for inactive */
+.timeframe-button:not(.active):hover {
+    background-color: #e0e7ff;
+}
+
+
+/* Equivalent of bg-white rounded-lg p-4 flex flex-col shadow-sm border border-[#e0e7ff] min-h-[300px] md:min-h-[400px] */
+.stock-info-panel {
+    background-color: #ffffff;
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1rem; /* p-4 */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm - approximate */
+    border: 1px solid #e0e7ff;
+    min-height: 300px;
+}
+
+/* Equivalent of md:min-h-[400px] */
+@media (min-width: 768px) { /* Corresponds to Tailwind's 'md' breakpoint */
+    .stock-info-panel {
+        min-height: 400px;
+    }
+}
+
+
+/* Equivalent of flex justify-center items-center h-full text-[#5b4bc4] text-sm */
+.loading-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #5b4bc4;
+    font-size: 0.875rem; /* text-sm */
+}
+
+
+/* Equivalent of mb-4 pb-4 border-b border-[#e0e7ff] */
+.stock-price-section {
+    margin-bottom: 1rem; /* mb-4 */
+    padding-bottom: 1rem; /* pb-4 */
+    border-bottom: 1px solid #e0e7ff;
+}
+
+/* Equivalent of flex items-baseline */
+.price-line {
+    display: flex;
+    align-items: baseline;
+}
+
+/* Equivalent of text-2xl md:text-3xl font-bold text-[#090b12] */
+.current-price {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: #090b12;
+}
+
+/* Equivalent of md:text-3xl */
+@media (min-width: 768px) { /* Corresponds to Tailwind's 'md' breakpoint */
+    .current-price {
+        font-size: 1.875rem; /* text-3xl */
+    }
+}
+
+/* Equivalent of ml-2 text-sm text-[#5b4bc4] */
+.currency {
+    margin-left: 0.5rem; /* ml-2 */
+    font-size: 0.875rem; /* text-sm */
+    color: #5b4bc4;
+}
+
+/* Equivalent of text-sm font-medium and conditional text-[#f66149] or text-[#f29a3c] */
+/* You'll need a class based on the change value in JSX */
+.change-indicator {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+}
+
+.change-indicator.negative {
+    color: #f66149;
+}
+
+.change-indicator.positive {
+    color: #f29a3c;
+}
+
+
+/* Equivalent of flex-grow text-sm space-y-2.5 */
+.stock-details-list {
+    flex-grow: 1;
+    font-size: 0.875rem; /* text-sm */
+    /* space-y-2.5 is tricky with direct CSS. Using margin-bottom on children */
+}
+
+.stock-details-list > div:not(:last-child) {
+    margin-bottom: 0.625rem; /* space-y-2.5 is typically 0.625rem (10px) */
+}
+
+
+/* Equivalent of flex justify-between */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Equivalent of text-gray-500 */
+.detail-label {
+    color: #6b7280; /* text-gray-500 */
+}
+
+/* Equivalent of font-medium text-[#090b12] and text-right for some */
+.detail-value {
+    font-weight: 500; /* font-medium */
+    color: #090b12;
+}
+
+.detail-value.text-right {
+     text-align: right; /* text-right */
+}
+
+/* Equivalent of text-gray-500 text-center my-auto text-sm */
+.no-data-message {
+    color: #6b7280; /* text-gray-500 */
+    text-align: center; /* text-center */
+    margin-top: auto; /* my-auto */
+    margin-bottom: auto; /* my-auto */
+    font-size: 0.875rem; /* text-sm */
+}

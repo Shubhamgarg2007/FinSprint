@@ -1,0 +1,28 @@
+.addExpenseButton {
+    background-color: #7b61ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .addExpenseButton:hover {
+    background-color: #6a50e5;
+  }
+  
+/* .addExpenseButton {
+    background-color: #7b61ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .addExpenseButton:hover {
+    background-color: #6a50e5;
+  }
+   */

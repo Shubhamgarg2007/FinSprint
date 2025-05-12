@@ -1,0 +1,198 @@
+ .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 2rem;
+}
+
+.controlPanel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.refreshButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.refreshButton:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.refreshButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Beautified Export Dropdown */
+.exportDropdown {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #444;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23444%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.exportDropdown:hover, .exportDropdown:focus {
+  border-color: #aaa;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Purple Gradient Export Button */
+.controlPanel button:nth-child(3) {
+  background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(74, 0, 224, 0.2);
+}
+
+.controlPanel button:nth-child(3):hover {
+  background: linear-gradient(135deg, #9b4dff 0%, #651fff 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 0, 224, 0.25);
+}
+
+.controlPanel button:nth-child(3):disabled {
+  background: linear-gradient(135deg, #c0b8d2 0%, #9e9bad 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.expensesContainer {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Improved Table Styling */
+.expensesTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.expensesTable th,
+.expensesTable td {
+  padding: 14px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.expensesTable th:nth-child(3),
+.expensesTable td:nth-child(3) {
+  width: 100px; 
+}
+
+/* Enhanced Table Header */
+.expensesTable th {
+  background: linear-gradient(to right, #6a11cb 0%, #b695f7 100%);
+  color: white;
+  font-weight: 600;
+  border-bottom: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.expenseRow:hover {
+  background-color: #f8f9ff;
+}
+
+.expenseCategory {
+  font-weight: 500;
+  color: #444;
+}
+
+.expenseAmount {
+  font-family: 'Courier New', monospace;
+  text-align: right;
+  font-weight: 600;
+}
+
+.expenseDate {
+  color: #666;
+}
+
+.errorMessage {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.loading,
+.noExpenses {
+  text-align: center;
+  padding: 30px 0;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .expensesTable {
+    font-size: 14px;
+  }
+  
+  .expensesTable th,
+  .expensesTable td {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .controlPanel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .exportDropdown, 
+  .controlPanel button {
+    margin: 5px 0;
+  }
+}
