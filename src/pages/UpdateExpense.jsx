@@ -3,9 +3,12 @@ import { useAuth } from "@clerk/clerk-react";
 import axios from "axios";
 import styles from "../styles/UpdateExpense.module.css";
 import BackButton from "../components/backbutton";
+import { useNavigate } from "react-router-dom";
 
 const UpdateExpense = () => {
   const { getToken } = useAuth();
+  const navigate = useNavigate();
+
   const [expenses, setExpenses] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [editValues, setEditValues] = useState({});
@@ -16,7 +19,7 @@ const UpdateExpense = () => {
     const fetchExpenses = async () => {
       try {
         const token = await getToken();
-        const res = await axios.get("http://localhost:8000/expenses/", {
+        const res = await axios.get("https://finsprint-backend.onrender.com/expenses/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -28,6 +31,7 @@ const UpdateExpense = () => {
         setLoading(false);
       }
     };
+
     fetchExpenses();
   }, [getToken]);
 
@@ -45,7 +49,7 @@ const UpdateExpense = () => {
     try {
       const token = await getToken();
       const res = await axios.put(
-        `http://localhost:8000/expenses/${selectedId}`,
+        `https://finsprint-backend.onrender.com/expenses/${selectedId}`,
         editValues,
         {
           headers: {
@@ -56,7 +60,7 @@ const UpdateExpense = () => {
       );
       const updated = res.data;
       setExpenses(expenses.map((e) => (e.id === selectedId ? updated : e)));
-      setSelectedId(null); // Exit edit mode
+      setSelectedId(null);
     } catch (err) {
       alert("Error updating expense: " + err.message);
     }
@@ -64,9 +68,7 @@ const UpdateExpense = () => {
 
   return (
     <div className={styles.container}>
-      <div className="back">
-        <BackButton />
-      </div>
+      <div className="back"><BackButton /></div>
       <h1 className={styles.title}>Update Expenses</h1>
 
       {loading ? (
@@ -95,7 +97,6 @@ const UpdateExpense = () => {
                     onChange={() => handleSelect(expense.id)}
                   />
                 </td>
-
                 {selectedId === expense.id ? (
                   <>
                     <td>
@@ -117,7 +118,7 @@ const UpdateExpense = () => {
                       <input
                         name="date"
                         type="date"
-                        value={editValues.date.slice(0, 10)}
+                        value={editValues.date?.slice(0, 10)}
                         onChange={handleChange}
                       />
                     </td>
@@ -146,6 +147,7 @@ const UpdateExpense = () => {
           </tbody>
         </table>
       )}
+      <button onClick={() => navigate("/predict")}>Go to Prediction</button>
     </div>
   );
 };
