@@ -3,10 +3,10 @@ import { useAuth } from "@clerk/clerk-react";
 import axios from "axios";
 import styles from "../styles/GetExpense.module.css";
 import BackButton from "../components/backbutton";
-// import { fetchExpenses } from "../services/expenseservice";
 import Papa from "papaparse";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { useNavigate } from "react-router-dom";
 
 const GetExpense = () => {
   const [expenses, setExpenses] = useState([]);
@@ -14,7 +14,7 @@ const GetExpense = () => {
   const [error, setError] = useState(null);
   const [exportFormat, setExportFormat] = useState("");
   const { getToken } = useAuth();
-
+  const navigate = useNavigate();
 
   const formatDate = (dateString) => {
     if (!dateString) return "Unknown Date";
@@ -37,7 +37,6 @@ const GetExpense = () => {
 
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-
     const link = document.createElement("a");
     link.href = url;
     link.setAttribute("download", "expenses.csv");
@@ -48,13 +47,8 @@ const GetExpense = () => {
 
   const exportAsPDF = () => {
     try {
-      // Create a new jsPDF instance
       const doc = new jsPDF();
-      
-      // Add a title
       doc.text("Expense Report", 14, 15);
-
-      // Prepare data for the table
       const tableData = expenses.map((e) => [
         e.category || "Uncategorized",
         e.description || "-",
@@ -62,18 +56,15 @@ const GetExpense = () => {
         formatDate(e.date),
       ]);
 
-      // Generate the table
       autoTable(doc, {
         head: [["Category", "Description", "Amount", "Date"]],
         body: tableData,
         startY: 20,
         columnStyles: {
-          2: { cellWidth: 30 }, // Adjust the width of the "Amount" column (index 2)
+          2: { cellWidth: 30 },
         },
       });
-      
 
-      // Save the PDF
       doc.save("expenses.pdf");
     } catch (error) {
       console.error("Error generating PDF:", error);
@@ -86,9 +77,7 @@ const GetExpense = () => {
     setError(null);
     try {
       const token = await getToken();
-      if (!token) throw new Error("Authentication failed: No token available");
-
-      const response = await axios.get("http://localhost:8000/expenses/", {
+      const response = await axios.get("https://finsprint-backend.onrender.com/expenses/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -108,32 +97,18 @@ const GetExpense = () => {
 
   return (
     <div className={styles.container}>
-      <div className="back">
-        <BackButton />
-      </div>
-
+      <div className="back"><BackButton /></div>
       <h1 className={styles.title}>All Expenses</h1>
 
       <div className={styles.controlPanel}>
-        <button
-          onClick={loadExpenses}
-          disabled={loading}
-          className={styles.refreshButton || ""}
-        >
+        <button onClick={loadExpenses} disabled={loading}>
           {loading ? "Loading..." : "Refresh"}
         </button>
-        <select
-          onChange={(e) => setExportFormat(e.target.value)}
-          value={exportFormat}
-          className={styles.exportDropdown}
-        >
-          <option value="" disabled>
-            Export as...
-          </option>
+        <select onChange={(e) => setExportFormat(e.target.value)} value={exportFormat}>
+          <option value="" disabled>Export as...</option>
           <option value="csv">CSV</option>
           <option value="pdf">PDF</option>
         </select>
-
         <button
           onClick={() => {
             if (exportFormat === "csv") exportAsCSV();
@@ -143,22 +118,18 @@ const GetExpense = () => {
         >
           Export
         </button>
+        <button onClick={() => navigate("/predict")}>Go to Prediction</button>
       </div>
 
-      {error && (
-        <div className={styles.errorMessage || "error-message"}>{error}</div>
-      )}
-
+      {error && <div className={styles.errorMessage}>{error}</div>}
       {loading ? (
-        <div className={styles.loading || "loading"}>Loading expenses...</div>
+        <div>Loading expenses...</div>
       ) : (
         <div className={styles.expensesContainer}>
           {expenses.length === 0 ? (
-            <div className={styles.noExpenses || "no-expenses"}>
-              No expenses found.
-            </div>
+            <div>No expenses found.</div>
           ) : (
-            <table className={styles.expensesTable || "expenses-table"}>
+            <table className={styles.expensesTable}>
               <thead>
                 <tr>
                   <th>Category</th>
@@ -169,28 +140,11 @@ const GetExpense = () => {
               </thead>
               <tbody>
                 {expenses.map((expense) => (
-                  <tr
-                    key={expense.id}
-                    className={styles.expenseRow || "expense-row"}
-                  >
-                    <td
-                      className={styles.expenseCategory || "expense-category"}
-                    >
-                      {expense.category || "Uncategorized"}
-                    </td>
-                    <td
-                      className={
-                        styles.expenseDescription || "expense-description"
-                      }
-                    >
-                      {expense.description || "-"}
-                    </td>
-                    <td className={styles.expenseAmount || "expense-amount"}>
-                      ₹{expense.amount || 0}
-                    </td>
-                    <td className={styles.expenseDate || "expense-date"}>
-                      {formatDate(expense.date)}
-                    </td>
+                  <tr key={expense.id}>
+                    <td>{expense.category}</td>
+                    <td>{expense.description}</td>
+                    <td>₹{expense.amount}</td>
+                    <td>{formatDate(expense.date)}</td>
                   </tr>
                 ))}
               </tbody>
