@@ -21,7 +21,7 @@ const UpdateExpense = () => {
     const fetchExpenses = async () => {
       try {
         const token = await getToken();
-        const res = await axios.get("http://localhost:8000/expenses/", {
+        const res = await axios.get(`${baseUrl}/expenses/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -51,7 +51,7 @@ const UpdateExpense = () => {
     try {
       const token = await getToken();
       const res = await axios.put(
-        `http://localhost:8000/expenses/${selectedId}`,
+        `${baseUrl}/expenses/${selectedId}`,
         editValues,
         {
           headers: {
