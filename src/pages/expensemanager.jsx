@@ -5,6 +5,8 @@ import styles from "../styles/ExpenseManager.module.css";
 import BackButton from "../components/backbutton";
 import { useAuth } from "@clerk/clerk-react";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const ExpenseManager = () => {
   const navigate = useNavigate();
   const { getToken, isSignedIn } = useAuth();
@@ -18,7 +20,7 @@ const ExpenseManager = () => {
   const handleGenerateSummary = async () => {
     try {
       const token = await getToken();
-      const response = await fetch("https://finsprint-backend.onrender.com/expensesummary/generate_expense_summary/", {
+      const response = await fetch(`${baseUrl}/expensesummary/generate_expense_summary/`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
