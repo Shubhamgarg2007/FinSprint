@@ -5,6 +5,8 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useAuth } from "@clerk/clerk-react";
 import styles from "../styles/ExpenseChart.module.css";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 const ExpenseChart = () => {
@@ -18,7 +20,7 @@ const ExpenseChart = () => {
   useEffect(() => {
     const fetchExpenses = async () => {
       const token = await getToken();
-      const res = await fetch("http://localhost:8000/expenses/", {
+      const res = await fetch(`${baseUrl}/expenses/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

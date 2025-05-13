@@ -8,6 +8,8 @@ import RupeeIcon from "../assets/rupee.svg";
 import EuroIcon from "../assets/euro.svg";
 import YenIcon from "../assets/yen.svg";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 // Test change
 const CurrencyConverter = () => {
   const [amount, setAmount] = useState(1);

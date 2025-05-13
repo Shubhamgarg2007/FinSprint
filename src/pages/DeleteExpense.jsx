@@ -5,6 +5,8 @@ import styles from "../styles/DeleteExpense.module.css";
 import BackButton from "../components/backbutton";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const DeleteExpense = () => {
   const { getToken } = useAuth();
   const navigate = useNavigate();
@@ -16,8 +18,10 @@ const DeleteExpense = () => {
     const fetchExpenses = async () => {
       try {
         const token = await getToken();
-        const res = await axios.get("https://finsprint-backend.onrender.com/expenses/", {
-          headers: { Authorization: `Bearer ${token}` },
+        const res = await axios.get(`${baseUrl}/expenses/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         setExpenses(res.data);
       } catch (err) {
@@ -46,8 +50,10 @@ const DeleteExpense = () => {
       const token = await getToken();
       await Promise.all(
         selectedIds.map((id) =>
-          axios.delete(`https://finsprint-backend.onrender.com/expenses/${id}`, {
-            headers: { Authorization: `Bearer ${token}` },
+          axios.delete(`${baseUrl}/expenses/${id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           })
         )
       );

@@ -5,6 +5,8 @@ import styles from "../styles/UpdateExpense.module.css";
 import BackButton from "../components/backbutton";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const UpdateExpense = () => {
   const { getToken } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const UpdateExpense = () => {
     const fetchExpenses = async () => {
       try {
         const token = await getToken();
-        const res = await axios.get("https://finsprint-backend.onrender.com/expenses/", {
+        const res = await axios.get("http://localhost:8000/expenses/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -49,7 +51,7 @@ const UpdateExpense = () => {
     try {
       const token = await getToken();
       const res = await axios.put(
-        `https://finsprint-backend.onrender.com/expenses/${selectedId}`,
+        `http://localhost:8000/expenses/${selectedId}`,
         editValues,
         {
           headers: {

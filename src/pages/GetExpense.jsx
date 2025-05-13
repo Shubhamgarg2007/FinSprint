@@ -6,6 +6,9 @@ import BackButton from "../components/backbutton";
 import Papa from "papaparse";
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 import { useNavigate } from "react-router-dom";
 
 const GetExpense = () => {
@@ -77,7 +80,10 @@ const GetExpense = () => {
     setError(null);
     try {
       const token = await getToken();
-      const response = await axios.get("https://finsprint-backend.onrender.com/expenses/", {
+      if (!token) throw new Error("Authentication failed: No token available");
+
+      const response = await axios.get(`${baseUrl}/expenses/`, {
+     
         headers: {
           Authorization: `Bearer ${token}`,
         },

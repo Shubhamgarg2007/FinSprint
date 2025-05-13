@@ -5,6 +5,8 @@ import axios from "axios";
 import styles from "../styles/AddExpense.module.css";
 import BackButton from "../components/backbutton";
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
 const AddExpense = () => {
   const { user } = useUser();
   const { getToken } = useAuth();
@@ -31,8 +33,10 @@ const AddExpense = () => {
     };
 
     try {
-      const res = await axios.post("https://finsprint-backend.onrender.com/expenses/", newExpense, {
-        headers: { Authorization: `Bearer ${authToken}` },
+      const res = await axios.post(`${baseUrl}/expenses/`, newExpense, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
       });
 
       setExpenses((prev) => [...prev, res.data]);
@@ -57,7 +61,7 @@ const AddExpense = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("https://finsprint-backend.onrender.com/receiptscanner/scan_receipt/", formData, {
+      const res = await axios.post(`${baseUrl}/receiptscanner/scan_receipt/`, formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
           "Content-Type": "multipart/form-data",
