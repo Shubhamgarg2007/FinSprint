@@ -149,7 +149,6 @@ const UpdateExpense = () => {
           </tbody>
         </table>
       )}
-      <button onClick={() => navigate("/predict")}>Go to Prediction</button>
     </div>
   );
 };
