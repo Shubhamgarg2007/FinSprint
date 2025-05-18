@@ -11,7 +11,6 @@ import StockD from './pages/StockD'
 import DeleteExpense from "./pages/DeleteExpense";
 import GetExpense from "./pages/GetExpense"; 
 import UpdateExpense from './pages/UpdateExpense.jsx';
-import PredictComponent from './api/PredictComponent';
 
 
 
@@ -29,7 +28,6 @@ function App() {
         <Route path="/currency-converter" element={<CurrencyConverter />} />
         <Route path="/quiz" element={<QuizApp/>} />
         <Route path="/stock-dashboard" element={<StockD />} />
-        <Route path="/predict" element={<PredictComponent />} />
       </Routes>
     </Router>
   );
