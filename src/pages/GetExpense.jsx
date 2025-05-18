@@ -124,7 +124,6 @@ const GetExpense = () => {
         >
           Export
         </button>
-        <button onClick={() => navigate("/predict")}>Go to Prediction</button>
       </div>
 
       {error && <div className={styles.errorMessage}>{error}</div>}
