@@ -133,7 +133,6 @@ const AddExpense = () => {
           <button type="submit" disabled={loading}>Add Expense</button>
         </form>
 
-        <button onClick={() => navigate("/predict")}>Go to Prediction</button>
       </div>
     </>
   );
